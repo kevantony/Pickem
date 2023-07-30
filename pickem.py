@@ -8,47 +8,77 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 PATH = "C:\Program Files (x86)\chromedriver.exe"
 UNDERDOG="https://underdogfantasy.com/login"
-PRIZEPICKS="https://api.prizepicks.com/projections"
+PRIZEPICKSPROJECTIONS="https://api.prizepicks.com/projections"
+PRIZEPICKSLEAGUES="https://api.prizepicks.com/leagues"
 
 class Player:
-    def __init__(self, id, name, team, )
+    def __init__(self, name, sport, team, line = "", stat_type = ""):
+        self.name=name
+        self.sport=sport
+        self.team=team
+        self.line=line
+        self.stat_type=stat_type
 
 # service = ChromeService(executable_path=PATH)
 driver = webdriver.Chrome()
-driver.get(PRIZEPICKS)
+# driver.get(PRIZEPICKSPROJECTIONS)
+# time.sleep(5)
+# driver.maximize_window()
+# projections = json.loads(driver.find_element(By.CSS_SELECTOR, 'body > pre').text)
+
+
+
+# players = projections['included']
+# data = projections['data']
+# playerDict = {}
+# PrizepicksPlayers = {}
+# for player in players:
+#     attr = player['attributes']
+#     if (len(attr)) != 8:
+#         continue
+#     playerDict[player['id']] = [attr['name'], attr['league'], attr['team']]
+
+
+# for entry in data:
+#     id = entry['relationships']['new_player']['data']['id']
+#     playerInfo = playerDict[id]
+#     name=playerInfo[0]
+#     sport=playerInfo[1]
+#     team=playerInfo[2]
+#     line=entry['attributes']['line_score']
+#     stat=entry['attributes']['stat_type']
+#     PrizepicksPlayers[id] = Player(name,sport, team,line, stat)
+
+# for val in PrizepicksPlayers.values():
+#     print(val.__dict__)
+
+
+
+driver.get(UNDERDOG)
 time.sleep(5)
-driver.maximize_window()
 
-json_content = json.loads(driver.find_element(By.CSS_SELECTOR, 'body > pre').text)
-
-players = json_content['included']
-data = json_content['data']
-playerDict = {}
-for player in players:
-    playerDict[player['id']] = player['attributes']['name']
-
-for i in playerDict:
-    print(i) 
-# elements = driver.find_elements(By.TAG_NAME, "input")
+elements = driver.find_elements(By.TAG_NAME, "input")
 
 
-# for e in elements:
-#     print(e)
-# uname = elements[0]
-# ActionChains(driver)\
-# .move_to_element(uname)\
-# .pause(1)\
-# .send_keys("joebruin@gmail.com\t")\
-# .pause(1)\
-# .send_keys("!Nsert123\t\t\t")\
-# .perform()
+for e in elements:
+    print(e)
+uname = elements[0]
+ActionChains(driver)\
+.move_to_element(uname)\
+.pause(1)\
+.send_keys("joebruin0335@gmail.com\t")\
+.pause(1)\
+.send_keys("!Nsert123\t\t\t")\
+.perform()
 
-# time.sleep(3)
+time.sleep(3)
 
-# signIn = driver.switch_to.active_element
-# signIn.click()
+signIn = driver.switch_to.active_element
+signIn.click()
 
-# time.sleep(3)
+time.sleep(3)
+
+driver.get(UNDERDOG)
 # driver.switch_to.active_element
 
 # ActionChains(driver).send_keys("\t\t").perform()
